@@ -9,33 +9,33 @@ class Service{
     
     deleteToDo(id) {
         return axios({
-          url: `https://5a6451dcf2bae00012ca1a6a.mockapi.io/api/TodoList/${id}`,
+          url: `https://625569798646add390d6709e.mockapi.io/api/TodoList/${id}`,
           method: "DELETE",
         });
       };
     
     addToDo(todo) {
         return axios({
-          url: "https://5a6451dcf2bae00012ca1a6a.mockapi.io/api/TodoList",
+          url: "https://625569798646add390d6709e.mockapi.io/api/TodoList",
           method: "POST",
-          data: product,
+          data: todo,
         });
       };
     
     getToDoById(id) {
         return axios({
-          url: `https://5a6451dcf2bae00012ca1a6a.mockapi.io/api/TodoList/${id}`,
+          url: `https://625569798646add390d6709e.mockapi.io/api/TodoList/${id}`,
           method: "GET",
         });
       };
     
-    updateToDo(todo) {
+    updateToDo(id, toDo) {
         return axios({
-          url: `https://5a6451dcf2bae00012ca1a6a.mockapi.io/api/TodoList/${todo.id}`,
+          url: `https://625569798646add390d6709e.mockapi.io/api/TodoList/${id}`,
           method: "PUT",
-          data: product,
+          data: toDo,
         });
-      };
+      };  
 }
 
 

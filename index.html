@@ -9,8 +9,13 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-
     <link rel="stylesheet" href="./css/style.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
 </head>
 
 <body>
@@ -42,15 +47,36 @@
                     <button id="addItem">
                         <i class="fa fa-plus"></i>
                     </button>
+                    
                 </div>
                 <div class="card__todo">
                     <!-- Uncompleted tasks -->
                     <ul class="todo" id="todo">
-                        <li>Test <span class=""><i class="fa fa-trash" aria-hidden="true" ></i><i class="fa fa-check-circle cus-check" aria-hidden="true"></i></span></li>
+                        <!-- <li>Test 
+                            <div class="buttons">
+                                <button>
+                                    <i class="fa fa-trash" aria-hidden="true" ></i>
+                                </button>
+                                <button class=""><i class="fa fa-check-circle" aria-hidden="true"></i></button>
+                            </div>
+                           
+                        
+                        </li> -->
                     </ul>
                    
                     <!-- Completed tasks -->
-                    <ul class="todo" id="completed"></ul>
+                    <ul class="todo" id="completed">
+                         <li>Test 
+                            <!-- <div class="buttons">
+                                <button>
+                                    <i class="fa fa-trash" aria-hidden="true" ></i>
+                                </button>
+                                <span class=""><i class="fa fa-check-circle fa-1.5x" aria-hidden="true"></i></span>
+                            </div> -->
+                           
+                        
+                        </li>
+                    </ul>
                 </div>
 
             </div>
@@ -58,11 +84,41 @@
         </div>
 
 
-    </div>
+        <!-- The Modal -->
 
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MessageModel" id="showMessageBtn" style="display: none;">
+        </button>
+
+        <div class="modal fade" id="MessageModel">
+        <div class="modal-dialog">
+        <div class="modal-content">
+    
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title" id="message-title">Modal Heading</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body" id="message-body">
+                Modal body..
+            </div>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+    
+        </div>
+        </div>
+        </div>
+    
+  </div>
+    
+  
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.min.js" integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $(function () {
             $('.toggle-btn').click(function () {
@@ -85,7 +141,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-
 </body>
 
 </html>
