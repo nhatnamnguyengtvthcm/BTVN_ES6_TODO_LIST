@@ -46,12 +46,12 @@ async function bindingTodoList() {
     return item.is_done == true;
   });
   const resulTodoCompletetHtml = todoCompleteList.reduce((result, todoObj) => {
-    const { content } = todoObj;
+    const { id, content } = todoObj;
     // console.log(result);
     return (result += `
             <li>${content} 
             <div class="buttons">
-                <button data-toggle="modal" data-target="#deleteModalId" onclick="getTodoDeleted(${id})>
+                <button data-toggle="modal" data-target="#deleteModalId" onclick="getTodoDeleted(${id})">
                     <i class="fa fa-trash" aria-hidden="true" ></i>
                 </button>
                 <span class=""><i class="fa fa-check-circle fa-1.5x" aria-hidden="true"></i></span>
