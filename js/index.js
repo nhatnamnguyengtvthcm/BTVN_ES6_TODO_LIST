@@ -1,6 +1,6 @@
 import Todo from "./models/task.js";
 import Service from "./services.js";
-
+let deleteId = -1;
 const service = new Service();
 function GetEleID(id) {
   return document.getElementById(id);
@@ -33,8 +33,8 @@ async function bindingTodoList() {
     return (result += `
             <li>${content} 
                 <div class="buttons">
-                        <button>
-                            <i class="fa fa-trash" aria-hidden="true" onclick="deleteTodo(${id})"></i>
+                        <button data-toggle="modal" data-target="#deleteModalId" onclick="getTodoDeleted(${id})">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
                         </button>
                         <button class="" onclick="updateState(${id}, true)"><i class="fa fa-check-circle" aria-hidden="true"></i>
                         </button>
@@ -51,7 +51,7 @@ async function bindingTodoList() {
     return (result += `
             <li>${content} 
             <div class="buttons">
-                <button>
+                <button data-toggle="modal" data-target="#deleteModalId" onclick="getTodoDeleted(${id})>
                     <i class="fa fa-trash" aria-hidden="true" ></i>
                 </button>
                 <span class=""><i class="fa fa-check-circle fa-1.5x" aria-hidden="true"></i></span>
@@ -87,7 +87,7 @@ GetEleID("addItem").addEventListener("click", async()=>{
     let todoContent = GetEleID("newTask").value;
     let todo = {
         "content": todoContent,
-        "is_done": fas
+        "is_done": false
     }
     // console.log(todo);
     await addTodoList(todo);
@@ -95,12 +95,12 @@ GetEleID("addItem").addEventListener("click", async()=>{
 });
 
 window.updateState =  async(id, status)=>{
-    console.log("he");
+    // console.log("he");
     let dct = {
         "is_done": status
     };
     try{
-        console.log("k");
+        // console.log("k");
         let toDoUpdate = await service.updateToDo(id, dct);
         console.log(toDoUpdate);
         if(toDoUpdate.status == 200){
@@ -117,6 +117,32 @@ window.updateState =  async(id, status)=>{
         GetEleID("showMessageBtn").click();
     }
     
+}
+
+window.confirmDeleteUser = async()=>{
+  try{
+    // console.log("k");
+    let ToDoDeleted = await service.deleteToDo(deleteId);
+    console.log(ToDoDeleted);
+    if(ToDoDeleted.status == 200){
+        GetEleID("message-body").innerHTML = "Sucessfully";
+        GetEleID("message-title").innerHTML = "DELETE TODO";
+        GetEleID("showMessageBtn").click();
+        deleteId = -1;
+        bindingTodoList();
+    }
+  }
+  catch(err){
+    // console.log("err");
+    GetEleID("message-body").innerHTML = "Unsucessfully";
+    GetEleID("message-title").innerHTML = "DELETE TODO";
+    GetEleID("showMessageBtn").click();
+  }
+}
+
+
+window.getTodoDeleted = (id) => {
+  deleteId = id;
 }
 
 // const promise = new Promise((resolve, reject)=>{

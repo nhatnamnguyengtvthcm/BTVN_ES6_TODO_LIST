@@ -1,58 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
-</head>
+  </head>
 
-<body>
-
+  <body>
     <div class="card">
-        <div class="card__header">
-            <img src="./img/X2oObC4.png" />
+      <div class="card__header">
+        <img src="./img/X2oObC4.png" />
+      </div>
+      <!-- <h2>hello!</h2> -->
+      <div class="card__body">
+        <div class="filter-btn">
+          <a id="one" href="#"><i class="fa fa-check-circle"></i></a>
+          <a id="two" href="#"><i class="fa fa-sort-alpha-down"></i></a>
+          <a id="three" href="#"><i class="fa fa-sort-alpha-up"></i></a>
+          <a id="all" href="#"><i class="fa fa-clock"></i></a>
+          <span class="toggle-btn">
+            <i class="fa fa-filter"></i>
+            <i class="fa fa-times"></i>
+          </span>
         </div>
-        <!-- <h2>hello!</h2> -->
-        <div class="card__body">
-            <div class="filter-btn">
-                <a id="one" href="#"><i class="fa fa-check-circle"></i></a>
-                <a id="two" href="#"><i class="fa fa-sort-alpha-down"></i></a>
-                <a id="three" href="#"><i class="fa fa-sort-alpha-up"></i></a>
-                <a id="all" href="#"><i class="fa fa-clock"></i></a>
-                <span class="toggle-btn">
-                    <i class="fa fa-filter"></i>
-                    <i class="fa fa-times"></i>
-                </span>
-            </div>
-            <div class="card__content">
-                <div class="card__title">
-                    <h2>My Tasks</h2>
-                    <p>September 9,2020</p>
-
-                </div>
-                <div class="card__add">
-                    <input id="newTask" type="text" placeholder="Enter an activity...">
-                    <button id="addItem">
-                        <i class="fa fa-plus"></i>
-                    </button>
-                    
-                </div>
-                <div class="card__todo">
-                    <!-- Uncompleted tasks -->
-                    <ul class="todo" id="todo">
-                        <!-- <li>Test 
+        <div class="card__content">
+          <div class="card__title">
+            <h2>My Tasks</h2>
+            <p>September 9,2020</p>
+          </div>
+          <div class="card__add">
+            <input
+              id="newTask"
+              type="text"
+              placeholder="Enter an activity..."
+            />
+            <button id="addItem">
+              <i class="fa fa-plus"></i>
+            </button>
+          </div>
+          <div class="card__todo">
+            <!-- Uncompleted tasks -->
+            <ul class="todo" id="todo">
+              <!-- <li>Test 
                             <div class="buttons">
                                 <button>
                                     <i class="fa fa-trash" aria-hidden="true" ></i>
@@ -62,76 +68,128 @@
                            
                         
                         </li> -->
-                    </ul>
-                   
-                    <!-- Completed tasks -->
-                    <ul class="todo" id="completed">
-                         <li>Test 
-                            <!-- <div class="buttons">
+            </ul>
+
+            <!-- Completed tasks -->
+            <ul class="todo" id="completed">
+              <li>
+                Test
+                <!-- <div class="buttons">
                                 <button>
                                     <i class="fa fa-trash" aria-hidden="true" ></i>
                                 </button>
                                 <span class=""><i class="fa fa-check-circle fa-1.5x" aria-hidden="true"></i></span>
                             </div> -->
-                           
-                        
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
 
+      <!-- The Modal -->
 
-        <!-- The Modal -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#MessageModel"
+        id="showMessageBtn"
+        style="display: none"
+      ></button>
 
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MessageModel" id="showMessageBtn" style="display: none;">
-        </button>
-
-        <div class="modal fade" id="MessageModel">
+      <div class="modal fade" id="MessageModel">
         <div class="modal-dialog">
-        <div class="modal-content">
-    
+          <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-            <h4 class="modal-title" id="message-title">Modal Heading</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title" id="message-title">Modal Heading</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
             </div>
-    
+
             <!-- Modal body -->
-            <div class="modal-body" id="message-body">
-                Modal body..
-            </div>
-    
+            <div class="modal-body" id="message-body">Modal body..</div>
+
             <!-- Modal footer -->
             <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">
+                Close
+              </button>
             </div>
-    
+          </div>
         </div>
+      </div>
+
+      <!-- Modal DELETE-->
+      <div
+        class="modal fade"
+        id="deleteModalId"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modelTitleId"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Delete User</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+                id="userModalDeletedClose"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">Are your sure delete?</div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                id="confirmDeleteId"
+                type="button"
+                class="btn btn-primary"
+                data-toggle="modal"
+                data-target="#deleteModalId"
+                onclick="confirmDeleteUser()"
+              >
+                Ok
+              </button>
+            </div>
+          </div>
         </div>
-        </div>
-    
-  </div>
-    
-  
-    <script src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.min.js" integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.min.js"
+      integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script>
-        $(function () {
-            $('.toggle-btn').click(function () {
-                $('.filter-btn').toggleClass('open');
-
-            });
-
-            $('.filter-btn a').click(function () {
-                $('.filter-btn').removeClass('open');
-
-            });
-
+      $(function () {
+        $(".toggle-btn").click(function () {
+          $(".filter-btn").toggleClass("open");
         });
+
+        $(".filter-btn a").click(function () {
+          $(".filter-btn").removeClass("open");
+        });
+      });
     </script>
 
     <script type="module" src="./js/index.js"></script>
@@ -141,6 +199,5 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-</body>
-
+  </body>
 </html>
