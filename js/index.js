@@ -2,7 +2,7 @@ import Todo from "./models/task.js";
 import Service from "./services.js";
 let deleteId = -1;
 const service = new Service();
-function GetEleID(id) {
+function getEleID(id){
   return document.getElementById(id);
 }
 
@@ -16,16 +16,41 @@ async function getTodoList() {
 }
 // const data = await getTodoList();
 // console.log(data);
-async function bindingTodoList() {
+async function bindingTodoList(sort_key="") {
   const data = await getTodoList();
-//   console.log(data);
-  // const todoList = data.map((item, index)=>{
-  //     let todo = new Todo(item.id, item.title, item.content, item.is_done);
-  //     return todo;
-  // });
+  if(sort_key==="dsc"){
+    data.sort((a, b)=>{
+      let fa = a.content.toLowerCase();
+      let fb = b.content.toLowerCase();
+      console.log();
+      if(fa < fb){
+        return -1;
+      }
+      if(fa > fb){
+        return 1;
+      }
+      return 0;
+    })
+  }
+  else if(sort_key==="desc"){
+    data.sort((a, b)=>{
+      let fa = a.content.toLowerCase();
+      let fb = b.content.toLowerCase();
+      console.log(fa);
+      console.log(fb);
+      if(fa > fb){
+        return -1;
+      }
+      if(fa < fb){
+        return 1;
+      }
+      return 0;
+    })
+  };
   const todoList = data.filter((item, index) => {
     return item.is_done == false;
   });
+  
 //   console.log(todoList);
   const resulTodotHtml = todoList.reduce((result, todoObj) => {
     const { id, content } = todoObj;
@@ -60,8 +85,8 @@ async function bindingTodoList() {
             </li>
         `);
   }, "");
-  GetEleID("todo").innerHTML = resulTodotHtml;
-  GetEleID("completed").innerHTML = resulTodoCompletetHtml;
+  getEleID("todo").innerHTML = resulTodotHtml;
+  getEleID("completed").innerHTML = resulTodoCompletetHtml;
 }
 bindingTodoList();
 
@@ -70,21 +95,21 @@ async function addTodoList(content){
         const addTodo = await service.addToDo(content);
         console.log(addTodo);
         if(addTodo.status == 201){
-            GetEleID("message-body").innerHTML = "Sucessfully";
-            GetEleID("message-title").innerHTML = "ADD TODO";
-            GetEleID("showMessageBtn").click();
+            getEleID("message-body").innerHTML = "Sucessfully";
+            getEleID("message-title").innerHTML = "ADD TODO";
+            getEleID("showMessageBtn").click();
         }
     }
     catch(err){
         console.log("err");
-        GetEleID("message-body").innerHTML = "Unsucessfully";
-        GetEleID("message-title").innerHTML = "ADD TODO";
-        GetEleID("showMessageBtn").click();
+        getEleID("message-body").innerHTML = "Unsucessfully";
+        getEleID("message-title").innerHTML = "ADD TODO";
+        getEleID("showMessageBtn").click();
     }
 }
 
-GetEleID("addItem").addEventListener("click", async()=>{
-    let todoContent = GetEleID("newTask").value;
+getEleID("addItem").addEventListener("click", async()=>{
+    let todoContent = getEleID("newTask").value;
     let todo = {
         "content": todoContent,
         "is_done": false
@@ -104,17 +129,17 @@ window.updateState =  async(id, status)=>{
         let toDoUpdate = await service.updateToDo(id, dct);
         console.log(toDoUpdate);
         if(toDoUpdate.status == 200){
-            GetEleID("message-body").innerHTML = "Sucessfully";
-            GetEleID("message-title").innerHTML = "UPDATE STATE";
-            GetEleID("showMessageBtn").click();
+            getEleID("message-body").innerHTML = "Sucessfully";
+            getEleID("message-title").innerHTML = "UPDATE STATE";
+            getEleID("showMessageBtn").click();
             bindingTodoList();
         }
     }
     catch(err){
         // console.log("err");
-        GetEleID("message-body").innerHTML = "Unsucessfully";
-        GetEleID("message-title").innerHTML = "UPDATE STATE";
-        GetEleID("showMessageBtn").click();
+        getEleID("message-body").innerHTML = "Unsucessfully";
+        getEleID("message-title").innerHTML = "UPDATE STATE";
+        getEleID("showMessageBtn").click();
     }
     
 }
@@ -125,26 +150,36 @@ window.confirmDeleteUser = async()=>{
     let ToDoDeleted = await service.deleteToDo(deleteId);
     console.log(ToDoDeleted);
     if(ToDoDeleted.status == 200){
-        GetEleID("message-body").innerHTML = "Sucessfully";
-        GetEleID("message-title").innerHTML = "DELETE TODO";
-        GetEleID("showMessageBtn").click();
+        getEleID("message-body").innerHTML = "Sucessfully";
+        getEleID("message-title").innerHTML = "DELETE TODO";
+        getEleID("showMessageBtn").click();
         deleteId = -1;
         bindingTodoList();
     }
   }
   catch(err){
     // console.log("err");
-    GetEleID("message-body").innerHTML = "Unsucessfully";
-    GetEleID("message-title").innerHTML = "DELETE TODO";
-    GetEleID("showMessageBtn").click();
+    getEleID("message-body").innerHTML = "Unsucessfully";
+    getEleID("message-title").innerHTML = "DELETE TODO";
+    getEleID("showMessageBtn").click();
   }
-}
+};
 
 
 window.getTodoDeleted = (id) => {
   deleteId = id;
-}
+};
 
+console.log("lll");
+getEleID("two").addEventListener("click", ()=>{
+  console.log("nam");
+  bindingTodoList("dsc");
+});
+
+getEleID("three").addEventListener("click", ()=>{
+  console.log("nam");
+  bindingTodoList("desc");
+});
 // const promise = new Promise((resolve, reject)=>{
 //     const test = axios({
 //         url: "https://625569798646add390d6709e.mockapi.io/api/TodoList",
